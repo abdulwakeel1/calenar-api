@@ -12,6 +12,10 @@ class GoogleCalenderController extends Controller
 
     public function getConsentScreen()
     {
+        if (auth()->user()->access_token) {
+            return redirect(route('meeting.create'));
+        }
+        
         return $this->googleCalender->fetchGoogleConsentScreen();
     }
 
